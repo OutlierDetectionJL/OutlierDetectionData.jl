@@ -14,7 +14,7 @@
   </a>
 </p>
 
-*OutlierDetectionData.jl* is a package to download and read common outlier detection datasets with Julia. Part of [OutlierDetection.jl](https://github.com/davnn/OutlierDetection.jl/).
+*OutlierDetectionData.jl* is a package to download and read common outlier detection datasets. This package is a part of [OutlierDetection.jl](https://github.com/davnn/OutlierDetection.jl/), the outlier detection ecosystem for Julia.
 
 **API Overview**
 
