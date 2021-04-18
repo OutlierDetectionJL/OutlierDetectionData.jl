@@ -1,4 +1,4 @@
-<h1 align="center">OutlierDetectionData</h1>
+<h1 align="center">OutlierDetectionData.jl</h1>
 <p align="center">
   <a href="https://discord.gg/5ErtExMV">
     <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?sanitize=true" alt="Chat">
