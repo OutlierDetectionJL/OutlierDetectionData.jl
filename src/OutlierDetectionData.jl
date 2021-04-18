@@ -1,5 +1,6 @@
 module OutlierDetectionData
+    include("utils.jl")
+    include("odds.jl")
 
-# Write your package code here.
-
+    export ODDS
 end
