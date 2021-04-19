@@ -18,30 +18,30 @@
 
 **API Overview**
 
-The API currently is very simple, we provide a single namespace per dataset collection. A dataset collection such as `ODDS` bundles multiple datasets. For each collection, the following is provided:
+The API currently is very simple, we provide a single namespace per dataset collection. A dataset collection such as `ODDS` bundles multiple outlier detection datasets. For each collection, the following is provided:
 
 List all available datasets in the collection:
 
 ```
-ODDS.list()
+list()
 ```
 
 Download a single dataset with `name`, by default using the default director specified by [`DataDeps.jl`](https://github.com/oxinabox/DataDeps.jl) or if defined the custom `dir`. DataDeps requires you to accept a download before it starts, but you can either set the environment variable `DATADEPS_ALWAYS_ACCEPT` or use `force_accept=true` to avoid the prompt (useful when downloading a list of files, for example).
 
 ```julia
-ODDS.download(name::String; dir::Union{Nothing, String} = nothing, force_accept::Bool = false)
+download(name::String; dir::Union{Nothing, String} = nothing, force_accept::Bool = false)
 ```
 
 Read a single dataset with `name`. This command automatically starts to download the file if the file does not exist. Currently the data is returned as a tuple containing `X::AbstractArray{Real}` and `y::AbstractVector{Int}`, where `X` is a column-major array of features and `y` represents the labels with `1` indicating inliers and `-1` indicating outliers.
 
 ```julia
-ODDS.read(name::String)
+read(name::String)
 ```
 
 Existing datasets can be easily removed with:
 
 ```julia
-ODDS.remove(name::String)
+remove(name::String)
 ```
 
 **Example:**
