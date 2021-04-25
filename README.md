@@ -32,7 +32,7 @@ Download a single dataset with `name`, by default using the default director spe
 download(name::String; dir::Union{Nothing, String} = nothing, force_accept::Bool = false)
 ```
 
-Read a single dataset with `name`. This command automatically starts to download the file if the file does not exist. Currently the data is returned as a tuple containing `X::AbstractArray{Real}` and `y::AbstractVector{Int}`, where `X` is a column-major array of features and `y` represents the labels with `1` indicating inliers and `-1` indicating outliers.
+Read a single dataset with `name`. This command automatically starts to download the file if the file does not exist. Currently the data is returned as a tuple containing `X::AbstractArray{Real}` and `y::AbstractVector{Int}`, where `X` is an array of features with one observation per row and `y` represents the labels with `1` indicating inliers and `-1` indicating outliers.
 
 ```julia
 read(name::String)

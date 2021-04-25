@@ -127,7 +127,7 @@ module ODDS
 
         dep = @datadep_str dataset
         data = MAT.matread("$dep/$dataset.mat")
-        X = collect(data["X"]');
+        X = collect(data["X"]);
         y = ifelse.(data["y"][:,1] .== 0, 1, -1);
         X, y
     end
