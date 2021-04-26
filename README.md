@@ -1,6 +1,6 @@
 <h1 align="center">OutlierDetectionData.jl</h1>
 <p align="center">
-  <a href="https://discord.gg/5ErtExMV">
+  <a href="https://discord.gg/F5MPPS9t4h">
     <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?sanitize=true" alt="Chat">
   </a>
   <a href="https://davnn.github.io/OutlierDetectionData.jl/stable">
