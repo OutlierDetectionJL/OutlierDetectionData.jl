@@ -1,5 +1,6 @@
 module ODDS
     using ..OutlierDetectionData: make_remove, make_download
+    using DataFrames: DataFrame, convert
     using DataDeps
     using MAT
 
@@ -127,7 +128,7 @@ module ODDS
 
         dep = @datadep_str dataset
         data = MAT.matread("$dep/$dataset.mat")
-        X = collect(data["X"]);
+        X = DataFrame(data["X"], :auto);
         y = ifelse.(data["y"][:,1] .== 0, 1, -1);
         X, y
     end
