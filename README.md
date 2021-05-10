@@ -26,32 +26,20 @@ List all available datasets in the collection:
 list()
 ```
 
-Download a single dataset with `name`, by default using the default director specified by [`DataDeps.jl`](https://github.com/oxinabox/DataDeps.jl) or if defined the custom `dir`. DataDeps requires you to accept a download before it starts, but you can either set the environment variable `DATADEPS_ALWAYS_ACCEPT` or use `force_accept=true` to avoid the prompt (useful when downloading a list of files, for example).
+Load a single dataset with `name`. This command automatically starts to download the file if the file does not exist. Currently the data is returned as a tuple containing `X::AbstractArray{Real}` and `y::AbstractVector{Int}`, where `X` is an array of features with one observation per row and `y` represents the labels with `1` indicating inliers and `-1` indicating outliers.
 
 ```julia
-download(name::String; dir::Union{Nothing, String} = nothing, force_accept::Bool = false)
-```
-
-Read a single dataset with `name`. This command automatically starts to download the file if the file does not exist. Currently the data is returned as a tuple containing `X::AbstractArray{Real}` and `y::AbstractVector{Int}`, where `X` is an array of features with one observation per row and `y` represents the labels with `1` indicating inliers and `-1` indicating outliers.
-
-```julia
-read(name::String)
-```
-
-Existing datasets can be easily removed with:
-
-```julia
-remove(name::String)
+load(name::String)
 ```
 
 **Example:**
 
-The following example shows how you can download all datasets from the ODDS collection and read the `"cardio"` dataset.
+The following example shows how you can download all datasets from the ODDS collection and load the `"cardio"` dataset.
 
 ```julia
 using OutlierDetectionData: ODDS
-ODDS.download.(ODDS.list(), force_accept=true)
-X, y = ODDS.read("cardio")
+
+X, y = ODDS.load("cardio")
 ```
 
 **Licenses**

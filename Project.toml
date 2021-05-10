@@ -1,16 +1,17 @@
 name = "OutlierDetectionData"
 uuid = "128abb87-8f03-48fe-b7ad-0e2a52164fda"
 authors = ["David Muhr <muhrdavid@gmail.com> and contributors"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
+ARFFFiles = "da404889-ca92-49ff-9e8b-0aa6b4d38dc8"
 DataDeps = "124859b0-ceae-595e-8997-d05f6a7a8dfe"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 MAT = "23992714-dd62-5051-b70f-ba57cb901cac"
 
 [compat]
 DataDeps = "0.7"
-DataFrames = "1.0"
+DataFrames = "0.20 - 1.0"
 MAT = "0.10"
 julia = "1"
 

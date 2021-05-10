@@ -1,10 +1,9 @@
 module ODDS
-    using ..OutlierDetectionData: make_remove, make_download
     using DataFrames: DataFrame, convert
     using DataDeps
     using MAT
 
-    export list, download, read, remove
+    export list, load
 
     const _meta = [
         (
@@ -120,10 +119,8 @@ module ODDS
     ]
 
     list() = [name for (name, _, _) in _meta]
-    download = make_download(list())
-    remove = make_remove(list())
 
-    function read(dataset::AbstractString)
+    function load(dataset::AbstractString)
         @assert dataset in list()
 
         dep = @datadep_str dataset
