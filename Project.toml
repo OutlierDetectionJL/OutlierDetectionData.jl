@@ -11,7 +11,7 @@ MAT = "23992714-dd62-5051-b70f-ba57cb901cac"
 
 [compat]
 DataDeps = "0.7"
-DataFrames = "0.20 - 1.0"
+DataFrames = "0.20 - 1.0, 1.1"
 MAT = "0.10"
 julia = "1"
 
