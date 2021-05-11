@@ -42,6 +42,11 @@ module ODDS
         url =  "https://www.dropbox.com/s/iq3hjxw77gpbl7u/glass.mat?dl=1"
         ),
         (
+        name = "http",
+        md5 = "81d689cfec5407305ab98cd26794e2cefb3aef5a521bf9c59744107aabcaed7e",
+        url = "https://www.dropbox.com/s/iy9ucsifal754tp/http.mat?dl=1"
+        ),
+        (
         name = "ionosphere",
         md5 =  "8ac5dfa6f47db4acdfe10615489b7f7dd015d79d5b381ce641e72baca3cfefb0",
         url =  "https://www.dropbox.com/s/lpn4z73fico4uup/ionosphere.mat?dl=1"

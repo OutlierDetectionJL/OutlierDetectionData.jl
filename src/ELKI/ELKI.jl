@@ -51,7 +51,7 @@ module ELKI
             register(DataDep(
                 to_name(name),
                 """Dataset: $name
-                Collection: On the Evaluation of Unsupervised Outlier Detection (ELKI)
+                Collection: On the Evaluation of Unsupervised Outlier Detection
                 Authors: Campos et al.
                 Website: https://www.dbs.ifi.lmu.de/research/outlier-evaluation/DAMI/""",
                 url,

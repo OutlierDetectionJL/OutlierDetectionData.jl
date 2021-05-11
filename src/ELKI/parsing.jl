@@ -170,32 +170,6 @@ function parse_header_line(s::State)
     return r
 end
 
-function parse_datum(s::State)
-    if maybeskip!(s, _MISSING)
-        return missing
-    else
-        parse_string(s)
-    end
-end
-
-function parse_data_line(s::State)
-    skipspace!(s)
-    xs = Union{String, Missing}[]
-    while true
-        x = parse_datum(s)
-        push!(xs, x)
-        skipspace!(s)
-        if maybeskip!(s, _SEP)
-            skipspace!(s)
-        else
-            break
-        end
-    end
-    skipcomment!(s)
-    hasmore(s) && _error_expecting(s, "end of string")
-    return xs
-end
-
 """
 parse_header(io::IO)
 Parse the ARFF header from `io`, stopping after `@data` is seen.

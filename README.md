@@ -18,7 +18,7 @@
 
 **API Overview**
 
-The API currently is very simple, we provide a single namespace per dataset collection. A dataset collection such as `ODDS` bundles multiple outlier detection datasets. For each collection, the following is provided:
+The API currently is simple; we provide a single namespace per dataset collection. A dataset collection such as `ODDS` bundles multiple outlier detection datasets. For each dataset collection, the following methods are provided:
 
 List all available datasets in the collection:
 
@@ -26,21 +26,28 @@ List all available datasets in the collection:
 list()
 ```
 
-Load a single dataset with `name`. This command automatically starts to download the file if the file does not exist. Currently the data is returned as a tuple containing `X::AbstractArray{Real}` and `y::AbstractVector{Int}`, where `X` is an array of features with one observation per row and `y` represents the labels with `1` indicating inliers and `-1` indicating outliers.
+Load a single dataset with `name`. This command automatically starts to download the file if the file does not exist. Currently, the data is returned as a tuple containing `X::DataFrame` and `y::Vector{Int}`, where `X` is a matrix of features with one observation per row and `y` represents the labels with `1` indicating inliers and `-1` indicating outliers.
 
 ```julia
-load(name::String)
+load(name::AbstractString)
 ```
 
 **Example:**
 
-The following example shows how you can download all datasets from the ODDS collection and load the `"cardio"` dataset.
+The following example shows how you can load the `"cardio"` dataset from the ODDS collection.
 
 ```julia
 using OutlierDetectionData: ODDS
 
 X, y = ODDS.load("cardio")
 ```
+
+**Available Collections:**
+
+The available collections are:
+
+- [ODDS](http://odds.cs.stonybrook.edu/), Outlier Detection DataSets, Shebuti Rayana, 2016
+- [ELKI](https://www.dbs.ifi.lmu.de/research/outlier-evaluation/DAMI/), On the Evaluation of Unsupervised Outlier Detection, Campos et al., 2016
 
 **Licenses**
 
