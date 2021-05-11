@@ -10,6 +10,7 @@ DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 MAT = "23992714-dd62-5051-b70f-ba57cb901cac"
 
 [compat]
+ARFFFiles = "0.1"
 DataDeps = "0.7"
 DataFrames = "0.20 - 1.0"
 MAT = "0.10"
