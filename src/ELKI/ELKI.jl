@@ -1,10 +1,10 @@
 module ELKI
-    using DataFrames: DataFrame, Not, select, convert, disallowmissing!
-    using ARFFFiles
+    using DataFrames: DataFrame, Not, select, convert, disallowmissing!, rename!
     using DataDeps
 
     export list, load
 
+    include("ARFF.jl")
     include("datasets.jl")
     ELKI_DATASETS = vcat(ELKI_SEMANTIC, ELKI_LITERATURE)
 
@@ -22,21 +22,24 @@ module ELKI
     ]
 
     list() = ELKI_DATASETS
+    to_name(dataset::AbstractString) = "elki-$dataset"
 
-    function load(dataset::AbstractString; split::Bool = false)
+    function load(dataset::AbstractString)
         dep = to_dep(dataset)
-        folder = match(r"^(\w+?)[_|\.]", dataset, 1).captures[1]
-        data = ARFFFiles.load(DataFrame, "$dep/$folder/$dataset.arff") |> disallowmissing!
+        folder = match(r"^(\w+?)([_|\.]|$)", dataset, 1).captures[1]
+        data = ARFF.read("$dep/$folder/$dataset.arff") |> DataFrame
+        # lowercase all columns because some datasets use :Outlier instead of :outlier
+        rename!(data, lowercase.(names(data)))
         X, y = select(data, Not(:outlier)), ifelse.(data.outlier .== "no", 1, -1)
         return X, y
     end
 
     function to_dep(dataset_name::AbstractString)
         if dataset_name in ELKI_LITERATURE
-            dep = @datadep_str "literature"
-            return return "$dep/literature"
+            dep = @datadep_str to_name("literature")
+            return "$dep/literature"
         elseif dataset_name in ELKI_SEMANTIC
-            dep = @datadep_str "semantic"
+            dep = @datadep_str to_name("semantic")
             return "$dep/semantic"
         else
             throw(ArgumentError("$dataset_name was not found in the available datasets"))
@@ -46,7 +49,7 @@ module ELKI
     function __init__()
         for (name, md5, url) in _meta
             register(DataDep(
-                name,
+                to_name(name),
                 """Dataset: $name
                 Collection: On the Evaluation of Unsupervised Outlier Detection (ELKI)
                 Authors: Campos et al.

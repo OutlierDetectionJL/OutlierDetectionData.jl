@@ -119,11 +119,12 @@ module ODDS
     ]
 
     list() = [name for (name, _, _) in _meta]
+    to_name(dataset::AbstractString) = "odds-$dataset"
 
     function load(dataset::AbstractString)
         @assert dataset in list()
 
-        dep = @datadep_str dataset
+        dep = @datadep_str to_name(dataset)
         data = MAT.matread("$dep/$dataset.mat")
         X = DataFrame(data["X"], :auto);
         y = ifelse.(data["y"][:,1] .== 0, 1, -1);
@@ -133,7 +134,7 @@ module ODDS
     function __init__()
         for (name, md5, url) in _meta
             register(DataDep(
-                name,
+                to_name(name),
                 """Dataset: $name
                 Collection: Outlier Detection DataSets (ODDS)
                 Authors: Shebuti Rayana
