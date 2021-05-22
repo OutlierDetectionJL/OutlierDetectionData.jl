@@ -30,7 +30,7 @@ module ELKI
         data = ARFF.read("$dep/$folder/$dataset.arff") |> DataFrame
         # lowercase all columns because some datasets use :Outlier instead of :outlier
         rename!(data, lowercase.(names(data)))
-        X, y = select(data, Not(:outlier)), ifelse.(data.outlier .== "no", 1, -1)
+        X, y = select(data, Not([:outlier, :id])), ifelse.(data.outlier .== "no", 1, -1)
         return X, y
     end
 
