@@ -8,3 +8,7 @@ end
 function with_accept(f, override::Bool = true)
     with_env(f, "DATADEPS_ALWAYS_ACCEPT", override)
 end
+
+function with_prefix(ls::AbstractVector{<:AbstractString}, prefix::Regex)
+    ls[startswith.(ls, prefix)]
+end
