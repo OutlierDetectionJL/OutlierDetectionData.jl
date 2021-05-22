@@ -10,14 +10,14 @@ module ELKI
 
     const _meta = [
         (
-        name = "semantic",
-        md5 = "e77ad3d37baeb1e4025497496e2183d3d00c6ea2d1e603b2d388894b490fa71a",
-        url = "https://www.dbs.ifi.lmu.de/research/outlier-evaluation/input/semantic.tar.gz",
+            name = "semantic",
+            md5 = "e77ad3d37baeb1e4025497496e2183d3d00c6ea2d1e603b2d388894b490fa71a",
+            url = "https://www.dbs.ifi.lmu.de/research/outlier-evaluation/input/semantic.tar.gz",
         ),
         (
-        name = "literature",
-        md5 =  "42a69b719f846bc03e4a6a0e5776969d4cd6b61a17675035c27753e7a6e0e256",
-        url =  "https://www.dbs.ifi.lmu.de/research/outlier-evaluation/input/literature.tar.gz",
+            name = "literature",
+            md5 =  "42a69b719f846bc03e4a6a0e5776969d4cd6b61a17675035c27753e7a6e0e256",
+            url =  "https://www.dbs.ifi.lmu.de/research/outlier-evaluation/input/literature.tar.gz",
         )
     ]
 
