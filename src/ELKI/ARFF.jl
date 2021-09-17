@@ -25,19 +25,12 @@ export ARFFType,
 
 include("parsing.jl")
 
-"""
-    ARFFRelation
-The unique name of the relation in the corresponding file.
-"""
+# The unique name of the relation in the corresponding file.
 struct ARFFRelation
     name::String
 end
 
-"""
-    ARFFType
-Abstract type of ARFF types. Concrete subtypes are `ARFFNumericType`, `ARFFStringType`, `ARFFDateType` and
-`ARFFNominalType`.
-"""
+# Abstract type of ARFF types
 abstract type ARFFType end
 
 struct ARFFNumericType <: ARFFType
@@ -62,29 +55,16 @@ struct ARFFNominalType <: ARFFType
 end
 ARFFNominalType(classes::Vector{String}) = ARFFNominalType(String, classes)
 
-"""
-    ARFFAttribute
-Represents a single ARFF @attribute.
-It has a `name` and a `type` (a [`ARFFType`](@ref)).
-"""
+# Represents a single ARFF @attribute.
 struct ARFFAttribute
     name::String
     type::ARFFType
 end
 
-"""
-    ARFFRelation
-Indicates the start of the data rows (to be parsed as CSV).
-"""
+# Indicates the start of the data rows (to be parsed as CSV).
 struct ARFFData end
 
-"""
-    ARFFHeader
-Represents the header information in an ARFF file.
-It has these fields:
-- `relation`: the @relation name.
-- `attributes`: vector of each @attribute as an [`ARFFAttribute`](@ref).
-"""
+# Represents the header information in an ARFF file.
 struct ARFFHeader
     relation::String
     attributes::Vector{ARFFAttribute}

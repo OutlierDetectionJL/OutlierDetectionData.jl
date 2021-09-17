@@ -170,11 +170,7 @@ function parse_header_line(s::State)
     return r
 end
 
-"""
-parse_header(io::IO)
-Parse the ARFF header from `io`, stopping after `@data` is seen.
-Returns the [`ARFFHeader`](@ref) and the number of lines read.
-"""
+# Parse the ARFF header from `io`, stopping after `@data` is seen.
 function parse_header(io::IO)
     relation = missing
     attributes = ARFFAttribute[]
