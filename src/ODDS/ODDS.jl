@@ -1,4 +1,5 @@
 module ODDS
+    using OutlierDetection: CLASS_NORMAL, CLASS_OUTLIER, to_categorical
     using DataFrames: DataFrame, convert
     using DataDeps
     using MAT
@@ -152,26 +153,26 @@ module ODDS
     to_name(dataset::AbstractString) = "odds-$dataset"
 
     function load(dataset::AbstractString)
-    @assert dataset in list()
+        @assert dataset in list()
 
-    dep = @datadep_str to_name(dataset)
-    data = MAT.matread("$dep/$dataset.mat")
-    X = DataFrame(data["X"], :auto);
-    y = ifelse.(data["y"][:,1] .== 0, 1, -1);
-    X, y
-end
+        dep = @datadep_str to_name(dataset)
+        data = MAT.matread("$dep/$dataset.mat")
+        X = DataFrame(data["X"], :auto);
+        y = ifelse.(data["y"][:,1] .== 0, CLASS_NORMAL, CLASS_OUTLIER);
+        X, to_categorical(y)
+    end
 
     function __init__()
-    for (name, md5, url) in _meta
-        register(DataDep(
-                to_name(name),
-                """Dataset: $name
-                Collection: Outlier Detection DataSets (ODDS)
-                Authors: Shebuti Rayana
-                Website: http://odds.cs.stonybrook.edu""",
-                url,
-                md5
+        for (name, md5, url) in _meta
+            register(DataDep(
+                    to_name(name),
+                    """Dataset: $name
+                    Collection: Outlier Detection DataSets (ODDS)
+                    Authors: Shebuti Rayana
+                    Website: http://odds.cs.stonybrook.edu""",
+                    url,
+                    md5
             ))
+        end
     end
-end
 end

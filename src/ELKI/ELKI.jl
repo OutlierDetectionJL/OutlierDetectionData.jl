@@ -1,4 +1,5 @@
 module ELKI
+    using OutlierDetection: CLASS_NORMAL, CLASS_OUTLIER, to_categorical
     using DataFrames: DataFrame, Not, select, convert, disallowmissing!, rename!
     using DataDeps
 
@@ -30,8 +31,8 @@ module ELKI
         data = ARFF.read("$dep/$folder/$dataset.arff") |> DataFrame
         # lowercase all columns because some datasets use :Outlier instead of :outlier
         rename!(data, lowercase.(names(data)))
-        X, y = select(data, Not([:outlier, :id])), ifelse.(data.outlier .== "no", 1, -1)
-        return X, y
+        X, y = select(data, Not([:outlier, :id])), ifelse.(data.outlier .== "no", CLASS_NORMAL, CLASS_OUTLIER)
+        return X, to_categorical(y)
     end
 
     function to_dep(dataset_name::AbstractString)
