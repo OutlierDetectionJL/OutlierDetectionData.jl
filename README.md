@@ -1,20 +1,11 @@
-<h1 align="center">OutlierDetectionData.jl</h1>
-<p align="center">
-  <a href="https://discord.gg/F5MPPS9t4h">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg?sanitize=true" alt="Chat">
-  </a>
-  <a href="https://davnn.github.io/OutlierDetectionData.jl/stable">
-    <img src="https://img.shields.io/badge/docs-stable-blue.svg" alt="Documentation (stable)">
-  </a>
-  <a href="https://github.com/davnn/OutlierDetectionData.jl/actions">
-    <img src="https://github.com/davnn/OutlierDetectionData.jl/workflows/CI/badge.svg" alt="Build Status">
-  </a>
-  <a href="https://codecov.io/gh/davnn/OutlierDetectionData.jl">
-    <img src="https://codecov.io/gh/davnn/OutlierDetectionData.jl/branch/master/graph/badge.svg" alt="Coverage">
-  </a>
-</p>
+# OutlierDetectionData
 
-*OutlierDetectionData.jl* is a package to download and read common outlier detection datasets. This package is a part of [OutlierDetection.jl](https://github.com/davnn/OutlierDetection.jl/), the outlier detection ecosystem for Julia.
+[![Documentation (stable)](https://img.shields.io/badge/docs-stable-blue.svg)](https://OutlierDetectionJL.github.io/OutlierDetection.jl/stable)
+[![Documentation (dev)](https://img.shields.io/badge/docs-dev-blue.svg)](https://OutlierDetectionJL.github.io/OutlierDetection.jl/dev)
+[![Build Status](https://github.com/OutlierDetectionJL/OutlierDetectionData.jl/workflows/CI/badge.svg)](https://github.com/OutlierDetectionJL/OutlierDetectionData.jl/actions)
+[![Coverage](https://codecov.io/gh/OutlierDetectionJL/OutlierDetectionData.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/OutlierDetectionJL/OutlierDetectionData.jl)
+
+*OutlierDetectionData.jl* is a package to download and read common outlier detection datasets. This package is a part of [OutlierDetection.jl](https://github.com/OutlierDetectionJL/OutlierDetection.jl/), the outlier detection ecosystem for Julia.
 
 **API Overview**
 
@@ -22,11 +13,17 @@ The API currently is simple; we provide a single namespace per dataset collectio
 
 List all available datasets in the collection:
 
-```
+```julia
 list()
 ```
 
-Load a single dataset with `name`. This command automatically starts to download the file if the file does not exist. Currently, the data is returned as a tuple containing `X::DataFrame` and `y::Vector{Int}`, where `X` is a matrix of features with one observation per row and `y` represents the labels with `1` indicating inliers and `-1` indicating outliers.
+List a subset of datasets starting with `prefix`:
+
+```julia
+list(prefix::Union{AbstractString, Regex})
+```
+
+Load a single dataset with `name`. This command automatically starts to download the file if the file does not exist. Currently, the data is returned as a tuple containing `X::DataFrame` and `y::Vector{Int}`, where `X` is a matrix of features with one observation per row and `y` represents the labels with `"normal"` indicating inliers and `"outlier"` indicating outliers.
 
 ```julia
 load(name::AbstractString)
