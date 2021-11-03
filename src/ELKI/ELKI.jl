@@ -1,11 +1,11 @@
 module ELKI
+    using ..OutlierDetectionData: ARFF
     using OutlierDetection: CLASS_NORMAL, CLASS_OUTLIER, to_categorical
     using DataFrames: DataFrame, Not, select, convert, disallowmissing!, rename!
     using DataDeps
 
     export list, load
 
-    include("ARFF.jl")
     include("datasets.jl")
     ELKI_DATASETS = vcat(ELKI_SEMANTIC, ELKI_LITERATURE)
 
@@ -38,10 +38,10 @@ module ELKI
     function to_dep(dataset_name::AbstractString)
         if dataset_name in ELKI_LITERATURE
             dep = @datadep_str to_name("literature")
-            return "$dep/literature"
+            return joinpath(dep, "literature")
         elseif dataset_name in ELKI_SEMANTIC
             dep = @datadep_str to_name("semantic")
-            return "$dep/semantic"
+            return joinpath(dep, "semantic")
         else
             throw(ArgumentError("$dataset_name was not found in the available datasets"))
         end
