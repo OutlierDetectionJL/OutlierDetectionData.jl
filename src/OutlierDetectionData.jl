@@ -3,10 +3,19 @@ module OutlierDetectionData
     include("ARFF/ARFF.jl")
     include("ODDS/ODDS.jl")
     include("ELKI/ELKI.jl")
+    include("TSAD/TSAD.jl")
 
     # Extend list with prefix search
     ELKI.list(prefix::Union{Regex, AbstractString}) = with_prefix(ELKI.list(), prefix)
     ODDS.list(prefix::Union{Regex, AbstractString}) = with_prefix(ODDS.list(), prefix)
+    TSAD.list(prefix::Union{Regex, AbstractString}) = with_prefix(TSAD.list(), prefix)
+
+    export ODDS,
+           ELKI,
+           TSAD,
+           ARFF,
+           list,
+           load
 
     """    list([prefix])
     List the available datasets in a dataset collection optionally given a prefix.
@@ -27,6 +36,4 @@ module OutlierDetectionData
     Name of the dataset to load.
     """
     function load end
-
-    export ODDS, ELKI, ARFF, list, load
 end
