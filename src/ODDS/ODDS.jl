@@ -6,7 +6,7 @@ module ODDS
 
     export list, load
 
-    const _meta = [
+    const ODDS_DATASETS = [
         (
             name = "annthyroid",
             md5 = "17a1012d005f2179eca3b87c0028eb5ca807794b359c33fa1f8ca5ac846c514f",
@@ -32,11 +32,12 @@ module ODDS
             md5 =  "39acf6da4d31f08c2c28dc047249d8cd8ccd9d6fc299d9b5a08874ac92290c98",
             url =  "https://www.dropbox.com/s/awx8iuzbu8dkxf1/cover.mat?dl=1"
         ),
-        (
-            name = "ecoli",
-            md5 =  "76886bf14f549680450a0720c58b461db965f8b762a5ab4d165c03bbdcb355fc",
-            url =  "https://www.dropbox.com/s/f38mquv0g08xxgp/ecoli.mat?dl=1"
-        ),
+        # the MAT import for ecoli is currently not working
+        # (
+        #     name = "ecoli",
+        #     md5 =  "76886bf14f549680450a0720c58b461db965f8b762a5ab4d165c03bbdcb355fc",
+        #     url =  "https://www.dropbox.com/s/f38mquv0g08xxgp/ecoli.mat?dl=1"
+        # ),
         (
             name = "glass",
             md5 =  "2c506e6e1e2ca1e82a905d10a90773151ff812c4bd969c71a12db5b2bb6e7921",
@@ -149,7 +150,7 @@ module ODDS
         )
     ]
 
-    list() = [name for (name, _, _) in _meta]
+    list() = [name for (name, _, _) in ODDS_DATASETS]
     to_name(dataset::AbstractString) = "odds-$dataset"
 
     function load(dataset::AbstractString)
@@ -163,7 +164,7 @@ module ODDS
     end
 
     function __init__()
-        for (name, md5, url) in _meta
+        for (name, md5, url) in ODDS_DATASETS
             register(DataDep(
                     to_name(name),
                     """Dataset: $name
