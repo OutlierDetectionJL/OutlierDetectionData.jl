@@ -7,7 +7,6 @@ module ELKI
     export list, load
 
     include("datasets.jl")
-    ELKI_DATASETS = vcat(ELKI_SEMANTIC, ELKI_LITERATURE)
 
     const _meta = [
         (
@@ -22,13 +21,13 @@ module ELKI
         )
     ]
 
-    list() = ELKI_DATASETS
+    list() = vcat(ELKI_SEMANTIC, ELKI_LITERATURE)
     to_name(dataset::AbstractString) = "elki-$dataset"
 
     function load(dataset::AbstractString)
         dep = to_dep(dataset)
         folder = match(r"^(\w+?)([_|\.]|$)", dataset, 1).captures[1]
-        data = ARFF.read("$dep/$folder/$dataset.arff") |> DataFrame
+        data = ARFF.read("$dep/$folder/$dataset.arff"; quotechar='\'', escapechar='\'') |> DataFrame
         # lowercase all columns because some datasets use :Outlier instead of :outlier
         rename!(data, lowercase.(names(data)))
         X, y = select(data, Not([:outlier, :id])), ifelse.(data.outlier .== "no", CLASS_NORMAL, CLASS_OUTLIER)
