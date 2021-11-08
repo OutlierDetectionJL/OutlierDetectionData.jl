@@ -77,7 +77,7 @@ function header(path)
     end
 end
 
-function read(path; quotechar='\'', escapechar='\'', kwargs...)
+function read(path; kwargs...)
     h, lineno = header(path)
 
     @debug "Reading data"
@@ -91,8 +91,6 @@ function read(path; quotechar='\'', escapechar='\'', kwargs...)
         header=colnames,
         types=coltypes,
         missingstring="?",
-        quotechar=quotechar,
-        escapechar=escapechar,
         dateformat=length(formats) > 0 ? formats[1] : nothing,
         kwargs...)
     return f
