@@ -91,6 +91,7 @@ function read(path; kwargs...)
         header=colnames,
         types=coltypes,
         missingstring="?",
+        comment="%",
         dateformat=length(formats) > 0 ? formats[1] : nothing,
         kwargs...)
     return f
