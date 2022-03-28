@@ -1,5 +1,5 @@
 using OutlierDetectionData
-using OutlierDetection: CLASS_NORMAL, CLASS_OUTLIER, n_normal, n_outlier
+using OutlierDetection: CLASS_NORMAL, CLASS_OUTLIER, normal_count, outlier_count
 using Test
 
 function test_tabular_dataset(dataset)
@@ -11,14 +11,11 @@ function test_tabular_dataset(dataset)
         X, y = withenv(() -> dataset.load(name), always_accept)
         @test ndims(y) == 1 # make sure that the labels are a vector
         @test ndims(X) == 2 # all tabular datasets are two-dimensional
-        inliers, outliers = n_normal(y), n_outlier(y)
+        inliers, outliers = normal_count(y), outlier_count(y)
 
         # at least one outlier and inlier
         @test inliers > 0
         @test outliers > 0
-
-        # at least 50% inliers (no test, just a warning to catch errors)
-        inliers >= outliers || @warn "$name contains less inliers than outliers."
 
         # no other elements than inliers and outliers
         @test inliers + outliers == length(y)
