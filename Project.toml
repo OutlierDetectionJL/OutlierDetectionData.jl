@@ -1,7 +1,7 @@
 name = "OutlierDetectionData"
 uuid = "128abb87-8f03-48fe-b7ad-0e2a52164fda"
 authors = ["David Muhr <muhrdavid@gmail.com> and contributors"]
-version = "0.2.0"
+version = "0.2.1"
 
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
@@ -14,11 +14,11 @@ Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 
 [compat]
-CSV = "~0.10.3"
+CSV = "0.10"
 DataDeps = "0.7"
 DataFrames = "0.22, 1"
 MAT = "0.10"
-OutlierDetection = "0.3"
+OutlierDetection = "0.3, 0.4"
 StatsBase = "0.33"
 julia = "^1.6"
 
