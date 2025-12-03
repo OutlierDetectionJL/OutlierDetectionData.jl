@@ -13,12 +13,12 @@ module TSAD
         (
             name = "univariate",
             md5 = "0eb0d3d5fd107ea0e92e1a76d25a662e73de93e6c6bcdfc0ef693246f10401f4",
-            url = "http://www.timeseriesclassification.com/Downloads/Archives/Univariate2018_arff.zip",
+            url = "http://www.timeseriesclassification.com/aeon-toolkit/Archives/Univariate2018_arff.zip",
         ),
         (
             name = "multivariate",
             md5 =  "37508dd78a3683ec7aaf26e787f4f5890cd20872539a0c4cb28bcfacc7a02536",
-            url =  "http://www.timeseriesclassification.com/Downloads/Archives/Multivariate2018_arff.zip",
+            url =  "http://www.timeseriesclassification.com/aeon-toolkit/Archives/Multivariate2018_arff.zip",
         )
     ]
 
